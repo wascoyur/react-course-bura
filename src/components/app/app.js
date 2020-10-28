@@ -12,7 +12,7 @@ const App = () => {
   ]
   return (
         <div>
-          <AppHeader/>
+          <AppHeader toDo={3} done={2}/>
           <div className="top-panel d-flex">
             <SearchPanel />
             <ItemStatusFilter />
