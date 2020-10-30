@@ -10,6 +10,7 @@ const App = () => {
     { label:'Develop React App', important: true , id:2},
     { label:'Be happy', important:false , id:3}
   ]
+
   return (
         <div>
           <AppHeader toDo={3} done={2}/>
@@ -17,7 +18,12 @@ const App = () => {
             <SearchPanel />
             <ItemStatusFilter />
           </div>
-          <TodoList todos = { todoData } />
+          <TodoList
+          todos = { todoData }
+          let toDeleted = {
+            (id) =>{ console.log(id) }
+          }
+          />
         </div>
 )
 };
