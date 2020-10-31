@@ -70,16 +70,21 @@ export default class App extends Component {
   }
 
   render(){
+    const { todoData } = this.state;
+    const doneCount = todoData.filter((el) => {
+      return el.done
+    }).length
+    const open = todoData.length - doneCount;
     return (
           <span>
             <div>
-              <AppHeader toDo={3} done={2}/>
+              <AppHeader toDo={open} done={doneCount}/>
               <div className="top-panel d-flex">
                 <SearchPanel />
                 <ItemStatusFilter />
               </div>
               <TodoList
-              todos = { this.state.todoData }
+              todos = { todoData }
               let toDeleted = {
                 (id) =>{ this.deleteItem(id) }
               }
