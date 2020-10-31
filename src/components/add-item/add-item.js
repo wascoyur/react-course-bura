@@ -7,7 +7,7 @@ export default class AddItem extends Component {
       <div className ="item-add-form">
       <button type="button"
               className="btn btn-outline-secondary"
-                onClick = { () => this.props.onAddItem('some') }
+                onClick = { () => this.props.onAddItem() }
               >Add Item</button>
 
     </div>

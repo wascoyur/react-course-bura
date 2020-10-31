@@ -5,12 +5,12 @@ import TodoList from '../todo-list/';
 import ItemStatusFilter from '../item-status-filter/';
 import AddItem from '../add-item/index'
 
-class App extends Component {
+export default class App extends Component {
   state ={
     todoData:[
-              { label:'Drink a beer', important:false, id:1},
-              { label:'Develop React App', important: true , id:2},
-              { label:'Be happy', important:false , id:3}
+              // this.createTodoItem('Drink a beer'),
+              // this.createTodoItem('Develop React App'),
+              // this.createTodoItem('Be happy'),
             ]
   }
   deleteItem = (id) =>{
@@ -23,22 +23,52 @@ class App extends Component {
       }
     })
   }
-  addItem = (s) => {
-    this.setState(({todoDoata}) => {
-      let idx = this.state.todoData.length +1;
-     const newArray = Array.from(this.state.todoData)
-     newArray.push(
-      {
-        'label': s,
-        'important':false,
-        'id':idx
-      })
-    return { todoData: newArray }
+  addItem = (nameItem = 'null') => {
+    this.setState(() => {
+      const newArray = Array.from(this.state.todoData);
+      newArray.push( this.createTodoItem(nameItem));
+      return { todoData: newArray }
     })
+  }
+  onToggleImportant = (id) => {
+    this.setState(() => {
+      const newArray = [...this.state.todoData];
+      const idx = newArray.findIndex( (el) => { return el.id === id });
+      newArray[idx].important = !newArray[idx].important
+      return { todoData: newArray }
+    })
+  }
+  onToggleDone = (id) => {
+    this.setState(() => {
+      const newArray = [...this.state.todoData];
+      const idx = newArray.findIndex( (el) => { return el.id === id });
+      newArray[idx].done = !newArray[idx].done
+      return { todoData: newArray }
+    })
+  }
+  createTodoItem (label, id=0){
+    try {
+      let newArr = [...this.state.todoData];
+      id = 1+newArr.length++ }
+     catch(e){
+      id = 1
+    }
 
+    return {
+            'label': label,
+            'important':false,
+            'id':id,
+            'done': false
+          }
+  }
 
+  createTestData(){
+    this.createTodoItem('Drink a beer');
+    this.createTodoItem('Develop React App');
+    this.createTodoItem('Be happy');
 
   }
+
   render(){
     return (
           <span>
@@ -53,6 +83,8 @@ class App extends Component {
               let toDeleted = {
                 (id) =>{ this.deleteItem(id) }
               }
+              onToggleImportant = { this.onToggleImportant }
+              onToggleDone = { this.onToggleDone }
               />
               <AddItem onAddItem = { this.addItem }/>
               </div>
@@ -60,8 +92,4 @@ class App extends Component {
         )
   }
 
-
-
 }
-
-export default App;
