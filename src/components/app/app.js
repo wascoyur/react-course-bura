@@ -12,7 +12,8 @@ export default class App extends Component {
       {label:'Develop React App', important:false, id:2, done: false},
       {label:'Be happy', important:false, id:3, done: false}
     ],
-    term: ''
+    term: '',
+    filter: 'all'
   }
   deleteItem = (id) =>{
     this.setState(({ todoData }) =>{
@@ -54,7 +55,6 @@ export default class App extends Component {
      catch(e){
       id = 1
     }
-
     return {
             'label': label,
             'important':false,
@@ -70,19 +70,31 @@ export default class App extends Component {
       return items
     }
     return items.filter((item) => {
-      return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1})
-
+      return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1});
   }
-  createTestData (){
-    this.addItem(this.createTodoItem('Drink a beer'));
-    this.createTodoItem('Develop React App');
-    this.createTodoItem('Be happy');
-
+  filter(items, filter){
+    switch (filter) {
+      case 'done':
+        return items.filter((el) =>{
+          return el.done === true
+        })
+      case 'active':
+        return items.filter((el) =>{
+          return el.done === false
+        })
+      default:
+        return items
+    }
+  }
+  filterChange = (filter)=>{
+    this.setState({
+       filter: filter
+    })
   }
 
   render(){
-    const { todoData, term } = this.state;
-    const visibleItems = this.search(todoData, term);
+    const { todoData, term, filter } = this.state;
+    const visibleItems = this.filter(this.search(todoData, term), filter);
     const doneCount = todoData.filter((el) => {
       return el.done
     }).length
@@ -95,7 +107,10 @@ export default class App extends Component {
                 <SearchPanel
                   onSearchChange = { this.onSearchChange }
                 />
-                <ItemStatusFilter />
+                <ItemStatusFilter
+                   filter = {filter}
+                   onChangeFilter = {this.filterChange}
+                />
               </div>
               <TodoList
                 todos = { visibleItems }

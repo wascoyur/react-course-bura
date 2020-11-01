@@ -4,7 +4,7 @@ import './todo-list-item.css';
 export default class TodoListItem extends Component {
 
   render(){
-    const { label, onDeleted, onToggleDone, onToggleImportant, done, important } = this.props;
+    const { label, onToggleDone, onToggleImportant, done, important } = this.props;
 
     let classNames = 'todo-list-item';
     if (done) {
