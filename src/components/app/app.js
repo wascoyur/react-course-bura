@@ -8,10 +8,11 @@ import AddItem from '../add-item/index'
 export default class App extends Component {
   state ={
     todoData:[
-              // this.createTodoItem('Drink a beer'),
-              // this.createTodoItem('Develop React App'),
-              // this.createTodoItem('Be happy'),
-            ]
+      {label:'Drink a beer', important:false, id:1, done: false},
+      {label:'Develop React App', important:false, id:2, done: false},
+      {label:'Be happy', important:false, id:3, done: false}
+    ],
+    term: ''
   }
   deleteItem = (id) =>{
     this.setState(({ todoData }) =>{
@@ -61,16 +62,27 @@ export default class App extends Component {
             'done': false
           }
   }
+  onSearchChange = (term) =>{
+    this.setState({term})
+  }
+  search(items, term ){
+    if (term.length === 0) {
+      return items
+    }
+    return items.filter((item) => {
+      return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1})
 
-  createTestData(){
-    this.createTodoItem('Drink a beer');
+  }
+  createTestData (){
+    this.addItem(this.createTodoItem('Drink a beer'));
     this.createTodoItem('Develop React App');
     this.createTodoItem('Be happy');
 
   }
 
   render(){
-    const { todoData } = this.state;
+    const { todoData, term } = this.state;
+    const visibleItems = this.search(todoData, term);
     const doneCount = todoData.filter((el) => {
       return el.done
     }).length
@@ -80,16 +92,18 @@ export default class App extends Component {
             <div>
               <AppHeader toDo={open} done={doneCount}/>
               <div className="top-panel d-flex">
-                <SearchPanel />
+                <SearchPanel
+                  onSearchChange = { this.onSearchChange }
+                />
                 <ItemStatusFilter />
               </div>
               <TodoList
-              todos = { todoData }
-              let toDeleted = {
-                (id) =>{ this.deleteItem(id) }
-              }
-              onToggleImportant = { this.onToggleImportant }
-              onToggleDone = { this.onToggleDone }
+                todos = { visibleItems }
+                let toDeleted = {
+                  (id) =>{ this.deleteItem(id) }
+                }
+                onToggleImportant = { this.onToggleImportant }
+                onToggleDone = { this.onToggleDone }
               />
               <AddItem onAddItem = { this.addItem }/>
               </div>

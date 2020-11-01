@@ -19,7 +19,8 @@ export default class AddItem extends Component {
       val = this.state.label
     }
     return(
-        <form className="item-add-form d-flex"
+        <form
+          className="item-add-form d-flex"
           onSubmit = { this.onSubmit }
           >
           <input type = "text"
