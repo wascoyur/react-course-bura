@@ -1,16 +1,26 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 
-const url = 'https://swapi.dev/api/people/2';
-const getResource = async  (url) =>{
-  const res = await fetch(url);
-  const body = await res.json();
-  return body;
-};
+class SwapiService {
+  _apiBase = 'https://swapi.dev/api/';
 
-getResource(url)
-  .then((body) => {
-    console.log(body);
-  }).catch((e) => {
-    console.log(e);
-  })
+  async getResource(url){
+    const res = await fetch(`${this._apiBase}${url}`);
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, recived ${res.status}`)
+    }
+    return await res.json();
+  }
+  async getAllPeople(){
+  const resp = await this.getResource(`people/`);
+  return resp.results;
+  }
+  getPerson(id){
+  return this.getResource(`people/${id}/`);
+  }
+}
+const swapy = new SwapiService();
+const rnd = Math.round(Math.random() * 10)
+swapy.getPerson(rnd).then((people) =>{
+  console.log(people/* .map((el) => el */.name);
+})
