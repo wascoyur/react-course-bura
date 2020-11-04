@@ -15,9 +15,14 @@ export default class SwapiService {
   getPerson(id){
   return this.getResource(`people/${id}/`);
   }
-}
-const swapy = new SwapiService();
-const rnd = Math.round(Math.random() * 10)
-swapy.getPerson(rnd).then((people) =>{
-  console.log(people/* .map((el) => el */.name);
-})
+  getPlanet(id){
+    return this.getResource(`planets/${id}`)
+  }
+  async getAllPlanets(){
+    const response = await this.getResource(`planets/`);
+    const planets = response.results
+    return planets
+  }
+
+}const test = new SwapiService();
+console.log('getAllPlanet:', test.getAllPlanets());
