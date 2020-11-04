@@ -15,14 +15,29 @@ export default class SwapiService {
   getPerson(id){
   return this.getResource(`people/${id}/`);
   }
-  getPlanet(id){
-    return this.getResource(`planets/${id}`)
+  async getPlanet(id){
+    const planet = await this.getResource(`planets/${id}`)
+    const pOut = this._transformPlanet(planet);
+    return pOut
   }
   async getAllPlanets(){
     const response = await this.getResource(`planets/`);
-    const planets = response.results
+    const planets = response.results.map(this._transformPlanet);
     return planets
   }
+  _transformPlanet(planet){
+    let id = planet.url.match(/\/([\d]*)\/$/)[1];
+    const out = {
+      id:id,
+      name: planet.name,
+      population: planet.population,
+      rotationPeriod: planet.rotation_period,
+      diametr: planet.diameter
+    }
+    return out
+  }
 
-}const test = new SwapiService();
+}
+
+const test = new SwapiService();
 console.log('getAllPlanet:', test.getAllPlanets());
