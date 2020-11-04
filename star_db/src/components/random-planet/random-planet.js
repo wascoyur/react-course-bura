@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services/swapi/swapi-servicw'
 import './random-planet.css'
+import Spinner from '../spinner/'
 
 export default class RandomPlanet extends Component{
   swapiService = new SwapiService();
@@ -28,6 +29,7 @@ export default class RandomPlanet extends Component{
   }
   render() {
     const {id, name, population, rotationPeriod, diametr } = this.state
+return <Spinner/>
     return(
       <div className="person-details card">
         <img className="person-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt=""/>
