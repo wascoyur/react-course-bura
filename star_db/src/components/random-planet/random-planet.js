@@ -6,11 +6,14 @@ import Spinner from '../spinner/'
 export default class RandomPlanet extends Component{
   swapiService = new SwapiService();
   state = {
-    id: 0,
-    name: 'none',
-    population:0,
-    rotationPeriod:0,
-    diametr:0
+    planet:{
+      id: 0,
+      name: 'none',
+      population:0,
+      rotationPeriod:0,
+      diametr:0
+    },
+    loading: true
   }
   constructor(){
     super();
@@ -29,7 +32,7 @@ export default class RandomPlanet extends Component{
   }
   render() {
     const {id, name, population, rotationPeriod, diametr } = this.state
-return <Spinner/>
+// return <Spinner/>
     return(
       <div className="person-details card">
         <img className="person-image" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt=""/>
