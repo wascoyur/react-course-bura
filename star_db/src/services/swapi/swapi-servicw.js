@@ -25,19 +25,22 @@ export default class SwapiService {
     const planets = response.results.map(this._transformPlanet);
     return planets
   }
+  _extractId(item){
+    let id = item.url.match(/\/([\d]*)\/$/)[1];
+    console.log('id:', id);
+    return id
+  }
   _transformPlanet(planet){
-    let id = planet.url.match(/\/([\d]*)\/$/)[1];
-    const out = {
-      id:id,
+    return {
+      id:this._extractId(planet),
       name: planet.name,
       population: planet.population,
       rotationPeriod: planet.rotation_period,
       diametr: planet.diameter
     }
-    return out
   }
 
 }
 
-const test = new SwapiService();
-console.log('getAllPlanet:', test.getAllPlanets());
+// const test = new SwapiService();
+// console.log('getAllPlanet:', test.getAllPlanets());
