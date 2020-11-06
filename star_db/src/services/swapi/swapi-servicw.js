@@ -2,7 +2,6 @@ export default class SwapiService {
   _apiBase = 'https://swapi.dev/api/';
 
   async getResource(url){
-    console.log(`${this._apiBase}${url}`);
 
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
@@ -11,8 +10,11 @@ export default class SwapiService {
     return await res.json();
   }
   async getAllPeople(){
-  const resp = await this.getResource(`people/`);
-  return resp.results.map(this._transformPerson);
+    const resp = await this.getResource(`people/`);
+    const out = resp.results.map((item) =>{
+      return this._transformPerson(item)
+    })
+    return out;
   }
   async getPerson(id){
     const resp =await this.getResource(`people/${id}/`);
@@ -43,7 +45,7 @@ export default class SwapiService {
     let id = item.url.match(/\/([\d]*)\/$/)[1];
     return id
   }
-  _transformPlanet(planet){
+  _transformPlanet = (planet) =>{
     return {
       id:this._extractId(planet),
       name: planet.name,
@@ -52,20 +54,23 @@ export default class SwapiService {
       diametr: planet.diameter
     }
   }
-  _transformPerson(person){
-    return{
-      id: this._extractId(person),
+  _transformPerson = (person) => {
+    const id = this._extractId(person);
+    const out = {
+      id:id ,
       name: person.name,
       gender: person.gender,
       birdYear: person.birth_year,
       eyeColor: person.eye_color
     }
+    return out
   }
-  _transformSpaceShip(ship){
+  _transformSpaceShip = (ship) => {
     return{
       id: this._extractId(ship),
       name: ship.name,
-      clazz: ship.starship_class,
+      model: ship.model,
+      manufacturer: ship.manufacturer
     }
   }
 
