@@ -1,35 +1,66 @@
 import React, {Component} from 'react';
 import SwapiService from '../../services/swapi/swapi-servicw'
-
+import Spinner from '../spinner'
 import './person-details.css';
 
 export default class PersonDetails extends Component{
   swapiService = new SwapiService();
-  constructor(){
-    super();
-    this.updatePerson();
+  constructor(props){
+    super(props);
   }
   state ={
-    id: 'id',
-    name: 'person.name',
-    gender: 'person.gender',
-    birdYear: 'person.birth_year',
-    eyeColor: 'person.eye_color'
+    person:{
+      personId: null,
+      name: null,
+      gender: null,
+      birdYear: null,
+      eyeColor: null
+    },
+    loading: true,
+
+  }
+  componentDidMount(){
+    // this.updatePerson();
+  }
+  componentDidUpdate(prevProps){
+
+    if (prevProps !== this.props) {
+      this.updatePerson(this.state.person.personId);
+    }
+
   }
   updatePerson(){
-    const rnd = Math.floor(Math.random() * 19 +2);
-    const id = rnd;
+    this.setState({loading:true})
+    const { personId } = this.props;
+    if(!personId) {return}
     this.swapiService
-      .getPerson(id)
-      .then(person =>{
-        this.setState(person)
-      })
+      .getPerson(personId)
+      .then((person) =>{
+        this.setState({
+          person:person,
+          loading: false
+        })
+      });
+
   }
   render(){
-    const { id, name, gender, birdYear, eyeColor } = this.state;
+    const { loading, person} = this.state;
+    const spinner = loading  ? <Spinner/>:null
+    const content = !loading ? <PersonView person = {person}/> : null
     return(
       <div className="person-details card">
-        <img className="person-image" src={`https://starwars-visualguide.com/assets/img//species/${id}.jpg`} alt=""></img>
+        {content}
+        {spinner}
+      </div>
+    )
+  }
+
+}
+const PersonView =({person}) =>{
+  const { id, name, gender, birdYear, eyeColor } = person
+  return(
+    <React.Fragment>
+        <img className="person-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt=""></img>
         <div className="card-body">
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
@@ -48,9 +79,6 @@ export default class PersonDetails extends Component{
 
           </ul>
         </div>
-
-        PersoDetails</div>
-    )
-  }
-
+    </React.Fragment>
+  )
 }

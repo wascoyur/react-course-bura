@@ -16,10 +16,12 @@ export default class RandomPlanet extends Component{
     loading: true,
     error:false
   }
-
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
   componentDidMount(){
     this.updatePlanet();
-    setInterval(this.updatePlanet, 250000);
+    this.interval = setInterval(this.updatePlanet, 25000);
   }
   updatePlanet = () => {
     const rnd = Math.floor(Math.random() * 19 +2);
