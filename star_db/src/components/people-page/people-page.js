@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './people-page.css';
+import ItemList from '../item-list/'
+import PersonDetails from '../person-details/'
 
 export default class PeoplePage extends Component{
 
@@ -15,9 +17,12 @@ export default class PeoplePage extends Component{
     }
     return(
       <div className="row mb2">
-      <ul className="item-list list-group">
-       
-      </ul>
+        <div className="col-md-6">
+          <ItemList onItemSelected={ this.onPersonSelected }/>
+        </div>
+        <div className="col-md-6">
+          <PersonDetails personId = {this.state.selectedPerson}/>
+        </div>
       </div>
     )
   }
