@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import SwapiService from '../../services/swapi/'
+import SwapiService from '../../services/swapi/swapi-servicw'
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import PlanetPage from '../planet-page'
@@ -8,7 +8,7 @@ import StarshipPage from '../starship-page/'
 import './app.css';
 
 export default class App extends Component{
-  // swapi = new SwapiService();
+  swapi = new SwapiService();
 
   render(){
     return (
@@ -19,7 +19,7 @@ export default class App extends Component{
           <RandomPlanet />
         </div>
       </div>
-      <PeoplePage /* getData = {this.swapi} */ />
+      <PeoplePage getData = {this.swapi} />
       {/* <PlanetPage/>
       <StarshipPage/> */}
     </div>

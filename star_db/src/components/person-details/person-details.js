@@ -4,7 +4,6 @@ import Spinner from '../spinner'
 import './person-details.css';
 
 export default class PersonDetails extends Component{
-  swapiService = new SwapiService();
 
   state ={
     person:{
@@ -15,24 +14,21 @@ export default class PersonDetails extends Component{
       eyeColor: null
     },
     loading: true,
-
   }
   componentDidMount(){
     // this.updatePerson();
   }
   componentDidUpdate(prevProps){
-
     if (prevProps !== this.props) {
       this.updatePerson(this.state.person.personId);
     }
-
   }
   updatePerson(){
     this.setState({loading:true})
-    const { personId } = this.props;
+    const { getData, personId} = this.props
+
     if(!personId) {return}
-    this.swapiService
-      .getPerson(personId)
+    getData(personId)
       .then((person) =>{
         this.setState({
           person:person,
