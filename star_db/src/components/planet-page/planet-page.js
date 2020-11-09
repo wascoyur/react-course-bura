@@ -13,6 +13,8 @@ export default class PlanetPage extends Component{
         <div className="col-md-6">
           <ItemList onItemSelected={ this.onPersonSelected }
             getData = {this.props.getData.getAllPlanets}
+            renderItem = {(item) =>
+              (<span>{item.name} {item.diametr} km</span>)}
           />
         </div>
         <div className="col-md-6">

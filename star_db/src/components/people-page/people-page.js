@@ -28,7 +28,6 @@ export default class PeoplePage extends Component{
         <div className="col-md-6">
           <PersonDetails personId = {this.state.selectedPerson}
             getData = {this.props.getData.getPerson}
-            renderItem = { this.props.renderItem }
           />
         </div>
       </div>
