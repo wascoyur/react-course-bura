@@ -20,11 +20,12 @@ export default class App extends Component{
         </div>
       </div>
       <PeoplePage
-      getData = {this.swapi}
+        getData = {this.swapi}
+        // renderItem ={(item) => item.name}
       />
-      <PlanetPage
+      {/* <PlanetPage
        getData = {this.swapi}
-       />
+       /> */}
       {/* <StarshipPage getData = {this.swapi} /> */}
     </div>
   );

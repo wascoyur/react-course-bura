@@ -19,13 +19,16 @@ export default class PeoplePage extends Component{
     return(
       <div className="row mb2">
         <div className="col-md-6">
-          <ItemList onItemSelected={ this.onPersonSelected }
+          <ItemList
+            onItemSelected={ this.onPersonSelected }
             getData = {this.props.getData.getAllPeople}
+            renderItem = { (item) => `${item.name} ${item.gender} ${item.birdYear}` }
           />
         </div>
         <div className="col-md-6">
           <PersonDetails personId = {this.state.selectedPerson}
             getData = {this.props.getData.getPerson}
+            renderItem = { this.props.renderItem }
           />
         </div>
       </div>
