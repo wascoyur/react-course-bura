@@ -9,7 +9,7 @@ export default class SwapiService {
     }
     return await res.json();
   }
-  async getAllPeople(){
+   getAllPeople = async() =>{
     const resp = await this.getResource(`people/`);
     const out = resp.results.map((item) =>{
       return this._transformPerson(item)

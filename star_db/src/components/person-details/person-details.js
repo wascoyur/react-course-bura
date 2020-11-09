@@ -5,9 +5,7 @@ import './person-details.css';
 
 export default class PersonDetails extends Component{
   swapiService = new SwapiService();
-  constructor(props){
-    super(props);
-  }
+
   state ={
     person:{
       personId: null,

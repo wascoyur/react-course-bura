@@ -4,17 +4,17 @@ import Spinner from '../spinner/'
 import './item-list.css'
 
 export default class ItemList extends Component {
-  
-  swapiService = new SwapiService();
+
+  // swapiService = new SwapiService();
   state ={
-    peopleList:null
+    itemList:null
   }
   componentDidMount(){
-    this.swapiService
-      .getAllPeople()
-      .then((peopleList) =>{
+    const { getData } = this.props;
+      getData()
+      .then((itemList) =>{
         this.setState({
-          peopleList: peopleList
+          itemList: itemList
         });
       })
   }
@@ -24,19 +24,21 @@ export default class ItemList extends Component {
       return(
         <li className="list-group-item"
           key= {id}
-          onClick = {() => this.props.onItemSelected(id)}>
+          onClick = {() => this.props.onItemSelected(id)}
+          getData = {this.props.getData}
+          >
           { name }
         </li>
       )
     })
   }
   render(){
-    const { peopleList } = this.state;
+    const { itemList } = this.state;
 
-    if (!peopleList) {
+    if (!itemList) {
       return <Spinner/>
     }
-    const items = this.renderItems(peopleList);
+    const items = this.renderItems(itemList);
 
     return (
     <ul className="item-list list-group">

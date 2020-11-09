@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+// import SwapiService from '../../services/swapi/'
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import PlanetPage from '../planet-page'
@@ -8,8 +8,8 @@ import StarshipPage from '../starship-page/'
 import './app.css';
 
 export default class App extends Component{
+  // swapi = new SwapiService();
 
-  
   render(){
     return (
     <div>
@@ -19,9 +19,9 @@ export default class App extends Component{
           <RandomPlanet />
         </div>
       </div>
-      <PeoplePage/>
-      <PlanetPage/>
-      <StarshipPage/>
+      <PeoplePage /* getData = {this.swapi} */ />
+      {/* <PlanetPage/>
+      <StarshipPage/> */}
     </div>
   );
   }
