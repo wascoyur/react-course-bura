@@ -24,6 +24,7 @@ export default class ItemList extends Component {
           key= {id}
           onClick = {() => this.props.onItemSelected(id)}
           getData = { this.props.getData }
+          
           >
           { name }
         </li>
