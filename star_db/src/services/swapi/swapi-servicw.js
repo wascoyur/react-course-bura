@@ -1,6 +1,6 @@
 export default class SwapiService {
   _apiBase = 'https://swapi.dev/api/';
-
+  _imgApiBase = 'https://starwars-visualguide.com/assets/img/';
   async getResource(url){
 
     const res = await fetch(`${this._apiBase}${url}`);
@@ -9,7 +9,7 @@ export default class SwapiService {
     }
     return await res.json();
   }
-   getAllPeople = async() =>{
+  getAllPeople = async() =>{
     const resp = await this.getResource(`people/`);
     const out = resp.results.map((item) =>{
       return this._transformPerson(item)
@@ -21,12 +21,24 @@ export default class SwapiService {
     const people = this._transformPerson(resp);
     return people;
   }
-  async getPlanet(id){
+  getImgPerson = (id) =>{
+    const img = `${this._imgApiBase}characters/${id}.jpg`;
+    return img;
+  }
+  getImgPlanet = (id) =>{
+    const img = `${this._imgApiBase}planet/${id}.jpg`;
+    return img;
+  }
+  getImgSpaceShip = (id) =>{
+    const img = `${this._imgApiBase}starships/${id}.jpg`;
+    return img;
+  }
+   getPlanet = async(id) =>{
     const planet = await this.getResource(`planets/${id}`)
     const pOut = this._transformPlanet(planet);
     return pOut
   }
-   getAllPlanets = async() =>{
+    getAllPlanets = async() =>{
     const response = await this.getResource(`planets/`);
     const planets = response.results.map(this._transformPlanet);
     return planets
@@ -46,12 +58,15 @@ export default class SwapiService {
     return id
   }
   _transformPlanet = (planet) =>{
+    const id =this._extractId(planet);
+    
     return {
-      id:this._extractId(planet),
+      id,
       name: planet.name,
       population: planet.population,
       rotationPeriod: planet.rotation_period,
-      diametr: planet.diameter
+      diametr: planet.diameter,
+      img: this.getImgPlanet(id)
     }
   }
   _transformPerson = (person) => {
@@ -61,7 +76,8 @@ export default class SwapiService {
       name: person.name,
       gender: person.gender,
       birdYear: person.birth_year,
-      eyeColor: person.eye_color
+      eyeColor: person.eye_color,
+      img: this.getImgPerson(id),
     }
     return out
   }
@@ -71,7 +87,8 @@ export default class SwapiService {
       id: this._extractId(ship),
       name: ship.name,
       model: ship.model,
-      manufacturer: ship.manufacturer
+      manufacturer: ship.manufacturer,
+      img: this.getImgSpaceShip(id)
     }
   }
 

@@ -5,41 +5,42 @@ import './item-details.css';
 export default class ItemDetails extends Component{
 
   state ={
-    person:{
-      personId: null,
+    item:{
+      itemId: null,
       name: null,
       gender: null,
       birdYear: null,
-      eyeColor: null
+      eyeColor: null,
+      img:null
     },
     loading: true,
   }
   componentDidMount(){
-    this.updatePerson();
+    this.updateItem();
   }
   componentDidUpdate(prevProps){
     if (prevProps !== this.props) {
-      this.updatePerson(this.state.person.personId);
+      this.updateItem(this.state.item.itemId);
     }
   }
-  updatePerson(){
+  updateItem(){
     this.setState({loading:true})
-    const { getData, personId} = this.props
+    const { getData, itemId} = this.props
 
-    if(!personId) {return}
-    getData(personId)
-      .then((person) =>{
+    if(!itemId) {return}
+    getData(itemId)
+      .then((item) =>{
         this.setState({
-          person:person,
-          loading: false
+          item,
+          loading: false,
         })
       });
 
   }
   render(){
-    const { loading, person} = this.state;
+    const { loading, item, img } = this.state;
     const spinner = loading  ? <Spinner/>:null
-    const content = !loading ? <PersonView person = {person}/> : null
+    const content = !loading ? <PersonView person = {item}/> : null
     return(
       <div className="person-details card">
         {content}
@@ -50,10 +51,10 @@ export default class ItemDetails extends Component{
 
 }
 const PersonView =({person}) =>{
-  const { id, name, gender, birdYear, eyeColor } = person
+  const {  name, gender, birdYear, eyeColor, img } = person;
   return(
     <React.Fragment>
-        <img className="person-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt=""></img>
+        <img className="person-image" src={img} alt=""></img>
         <div className="card-body">
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">
