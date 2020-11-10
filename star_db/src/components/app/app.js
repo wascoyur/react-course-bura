@@ -4,7 +4,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import PlanetPage from '../planet-page/'
 import PeoplePage from '../people-page/'
-import StarshipPage from '../starship-page/'
+import Row from '../row/'
 import './app.css';
 
 export default class App extends Component{
@@ -22,10 +22,8 @@ export default class App extends Component{
       <PeoplePage
         getData = {this.swapi}
       />
-      <PlanetPage
-       getData = {this.swapi}
-       />
-      {/* <StarshipPage getData = {this.swapi} /> */}
+      
+      
     </div>
   );
   }
