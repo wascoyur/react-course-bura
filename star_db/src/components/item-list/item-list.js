@@ -34,12 +34,10 @@ export default class ItemList extends Component {
   }
   render(){
     const { itemList } = this.state;
-
     if (!itemList) {
       return <Spinner/>
     }
     const items = this.renderItems(itemList);
-
     return (
     <ul className="item-list list-group">
       {items}

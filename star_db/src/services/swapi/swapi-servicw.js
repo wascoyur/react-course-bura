@@ -33,12 +33,12 @@ export default class SwapiService {
   }
   async getAllSpaceShips(){
     const resp = await this.getResource(`starships/`);
-    const ships = resp.results.map(this._transformSpaceShip)
+    const ships = this.results.map(this._transformSpaceShip)
     return ships;
   }
-  async getSpaceShip(id){
+   getSpaceShip = async (id) =>{
     const resp = await this.getResource(`starships/${id}`);
-    const ship = resp._transformSpaceShip(resp);
+    const ship = this._transformSpaceShip(resp);
     return ship;
   }
   _extractId(item){
@@ -66,6 +66,7 @@ export default class SwapiService {
     return out
   }
   _transformSpaceShip = (ship) => {
+    const id = this._extractId(ship);
     return{
       id: this._extractId(ship),
       name: ship.name,

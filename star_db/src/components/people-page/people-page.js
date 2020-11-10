@@ -15,20 +15,27 @@ export default class PeoplePage extends Component{
     if (this.state.hasError) {
       // return <ErrorIndicator/>
     }
-    const left = (  <ItemList
-        onItemSelected={ this.onPersonSelected }
-        getData = {this.props.getData.getAllPeople}
-        renderItem = { (item) => `${item.name} ${item.gender} ${item.birdYear}` }
-      />
+    const personDetails = (
+      <ItemDetails getData = {this.props.getData.getPerson} personId = {11}/>
     );
-    const right = (
-      <ItemDetails personId = {this.state.selectedPerson}
-                   getData = {this.props.getData.getPerson}
-    />);
+    const starshipDetails = (
+      <ItemDetails getData = {this.props.getData.getSpaceShip} personId = {5}/>
+    ) ;
+    
+    // const left = (  <ItemList
+    //     onItemSelected={ this.onPersonSelected }
+    //     getData = {this.props.getData.getAllPeople}
+    //     renderItem = { (item) => `${item.name} ${item.gender} ${item.birdYear}` }
+    //   />
+    // );
+    // const right = (
+    //   <ItemDetails personId = {this.state.selectedPerson}
+    //                getData = {this.props.getData.getPerson}
+    // />);
     return(
       <Row
-        left={left}
-        right={right }
+        left={ personDetails }
+        right={starshipDetails }
       />
     )
   }

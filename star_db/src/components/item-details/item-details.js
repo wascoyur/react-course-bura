@@ -15,7 +15,7 @@ export default class ItemDetails extends Component{
     loading: true,
   }
   componentDidMount(){
-    // this.updatePerson();
+    this.updatePerson();
   }
   componentDidUpdate(prevProps){
     if (prevProps !== this.props) {
