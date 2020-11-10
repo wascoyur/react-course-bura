@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './people-page.css';
 import ItemList from '../item-list/'
-import PersonDetails from '../person-details/';
+import ItemDetails from '../item-details/';
 import Row from "../row";
 
 export default class PeoplePage extends Component{
@@ -22,13 +22,13 @@ export default class PeoplePage extends Component{
       />
     );
     const right = (
-      <PersonDetails personId = {this.state.selectedPerson}
-                                 getData = {this.props.getData.getPerson}
+      <ItemDetails personId = {this.state.selectedPerson}
+                   getData = {this.props.getData.getPerson}
     />);
     return(
       <Row
         left={left}
-        right={right}
+        right={right }
       />
     )
   }
