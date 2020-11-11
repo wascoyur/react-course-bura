@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './people-page.css';
 import ItemList from '../item-list/'
-import ItemDetails from '../item-details/';
+import ItemDetails, { Record } from '../item-details/';
 import Row from "../row";
-import Record from '../item-details/';
 
 export default class PeoplePage extends Component{
   state = {
@@ -28,14 +27,14 @@ export default class PeoplePage extends Component{
         getData = {this.props.getData.getSpaceShip}
         itemId = {5}
         getImgUrl = {2}>
-        <Record field = "name" label="name"/>
+        <Record field = "gender" label="Gender"/>
         <Record field ="model" label='model'/>
       </ItemDetails>
     ) ;
     
     return(
       <Row
-        left={ personDetails }
+        // left={ personDetails }
         right={starshipDetails }
       />
     )

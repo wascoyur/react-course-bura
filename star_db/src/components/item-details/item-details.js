@@ -6,7 +6,7 @@ const  Record = ({item, field, label}) =>{
   return(
     <li className="list-group-item">
       <span className="term">{ label}</span>
-      <span>{item[field]}</span>
+      <span>{ field }</span>
     </li>
   )
 }
@@ -48,29 +48,27 @@ export default class ItemDetails extends Component{
 
   }
   render(){
-    const { loading, item, img } = this.state;
-    const spinner = loading  ? <Spinner/>:null
-    const content = !loading ? <PersonView person = {item}/> : null
+    const { loading, item } = this.state;
+    // const spinner = loading  ? <Spinner/>:null
+    // const content = !loading ? <PersonView person = {item}/> : null
+    const tmp = this.props.children;
+    console.log(tmp);
     return(
       <div className="person-details card">
-        {content}
-        {spinner}
+        <img className="person-image" src={item.img} alt=""></img>
+        <div className="card-body">
+          <h4>{item.birdYear}</h4>
+          <ul className="list-group list-group-flush">
+            { React.Children.map(tmp, ((child, idx) => {
+              return <li>{idx}</li>
+            }))}
+          </ul>
+        </div>
+        {/*{content}*/}
+        {/*{spinner}*/}
       </div>
     )
   }
 
 }
-const PersonView =({person}) =>{
-  const {  name, gender, birdYear, eyeColor, img } = person;
-  return(
-    <React.Fragment>
-        <img className="person-image" src={img} alt=""></img>
-        <div className="card-body">
-          <h4>{name}</h4>
-          <ul className="list-group list-group-flush">
-            { this.props.children }
-          </ul>
-        </div>
-    </React.Fragment>
-  )
-}
+
