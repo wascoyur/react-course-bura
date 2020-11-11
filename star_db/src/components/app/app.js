@@ -23,7 +23,6 @@ export default class App extends Component{
         getData = {this.swapi}
       />
       
-      
     </div>
   );
   }

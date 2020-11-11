@@ -25,20 +25,18 @@ export default class PeoplePage extends Component{
         <Record field="hair_color" label="Цвет волос"/>
       </ItemDetails>
     );
-    const starshipDetails = (
-      <ItemDetails
-        getData = {this.props.getData.getSpaceShip}
-        itemId = {5}
-        getImgUrl = {2}>
-        <Record field = "name" label="Trademark"/>
-        <Record field ="model" label='model'/>
-      </ItemDetails>
-    ) ;
+    const personList = (
+      <ItemList
+        onItemSelected={ this.onPersonSelected }
+        getData = {this.props.getData.getAllPeople}
+        renderItem = { (item) => `${item.name}` }
+      />
+    )
     
     return(
       <Row
-        left={ personDetails }
-        right={starshipDetails }
+        left={ personList }
+        right={personDetails }
       />
     )
   }
