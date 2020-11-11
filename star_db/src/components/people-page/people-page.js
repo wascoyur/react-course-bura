@@ -3,6 +3,7 @@ import './people-page.css';
 import ItemList from '../item-list/'
 import ItemDetails from '../item-details/';
 import Row from "../row";
+import Record from '../item-details/';
 
 export default class PeoplePage extends Component{
   state = {
@@ -25,9 +26,11 @@ export default class PeoplePage extends Component{
     const starshipDetails = (
       <ItemDetails
         getData = {this.props.getData.getSpaceShip}
-        itemId = {11}
-        getImgUrl = {2}
-      />
+        itemId = {5}
+        getImgUrl = {2}>
+        <Record field = "name" label="name"/>
+        <Record field ="model" label='model'/>
+      </ItemDetails>
     ) ;
     
     return(
