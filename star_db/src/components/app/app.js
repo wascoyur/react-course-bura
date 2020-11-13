@@ -82,15 +82,15 @@ export default class App extends Component {
 
             <PersonDetails itemId={11} />
 
-            {/*<PlanetDetails itemId={5} />*/}
-            
-            {/*<StarshipDetails itemId={9} />*/}
+            <PlanetDetails itemId={5} />
+
+            <StarshipDetails itemId={9} />
 
             <PersonList />
-            
-            {/*<StarshipList />*/}
-            
-            {/*<PlanetList />*/}
+
+            <StarshipList />
+
+            <PlanetList />
 
           </div>
         </SwapiServiceProvider>
