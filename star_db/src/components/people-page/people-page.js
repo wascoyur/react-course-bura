@@ -6,20 +6,20 @@ import Row from "../row";
 
 export default class PeoplePage extends Component{
   state = {
-    selectedPerson:{}
+    selectedItem:1
   }
-  onPersonSelected = (selectedPerson)=>{
-    this.setState({selectedPerson});
+  onPersonSelected = (selectedItem)=>{
+    this.setState({selectedItem});
   };
   
   render(){
     if (this.state.hasError) {
       // return <ErrorIndicator/>
     }
-    const personDetails = (
+    const itemDetails = (
       <ItemDetails
         getData = {this.props.getData.getPerson}
-        itemId = {1}
+        itemId = {this.state.selectedItem}
         getImgUrl ={1}>
         <Record field="name" label ="Имя"/>
         <Record field="hair_color" label="Цвет волос"/>
@@ -36,7 +36,7 @@ export default class PeoplePage extends Component{
     return(
       <Row
         left={ personList }
-        right={personDetails }
+        right={itemDetails }
       />
     )
   }

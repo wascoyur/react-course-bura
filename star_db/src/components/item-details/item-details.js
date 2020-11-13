@@ -52,7 +52,7 @@ export default class ItemDetails extends Component{
     // const spinner = loading  ? <Spinner/>:null
     // const content = !loading ? <PersonView person = {item}/> : null
     const tmp = this.props.children;
-    console.log(tmp);
+    // console.log(tmp);
     return(
       <div className="person-details card">
         <img className="person-image" src={item.img} alt=""></img>

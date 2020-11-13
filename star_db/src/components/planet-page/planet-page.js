@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import './planet-page.css';
 import ItemList from '../item-list'
-import PlanetDetails from '../planet-details/'
+import PlanetDetails from '../___planet-details/'
 
 export default class PlanetPage extends Component{
   state = {
