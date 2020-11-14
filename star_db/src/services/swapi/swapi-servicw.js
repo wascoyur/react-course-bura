@@ -26,7 +26,7 @@ export default class SwapiService {
     return img;
   }
   getImgPlanet = (id) =>{
-    const img = `${this._imgApiBase}planet/${id}.jpg`;
+    const img = `${this._imgApiBase}planets/${id}.jpg`;
     return img;
   }
   getImgSpaceShip = (id) =>{

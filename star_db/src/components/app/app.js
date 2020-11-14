@@ -22,7 +22,9 @@ export default class App extends Component{
       <PeoplePage
         getData = {this.swapi}
       />
-      
+      <PlanetPage
+        getData = {this.swapi}
+      />
     </div>
   );
   }

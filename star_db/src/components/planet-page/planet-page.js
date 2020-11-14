@@ -1,28 +1,42 @@
 import { Component } from 'react';
 import './planet-page.css';
 import ItemList from '../item-list'
-import PlanetDetails from '../___planet-details/'
+import ItemDetails, { Record } from '../item-details/';
+import Row from "../row";
 
 export default class PlanetPage extends Component{
   state = {
-    selectedPlanet:{}
+    selectedItem:5
   }
+  onPlanetSelected = (selectedItem)=>{
+    this.setState({selectedItem});
+  };
+  
   render(){
-    return(
-      <div className="row mb2">
-        <div className="col-md-6">
-          <ItemList onItemSelected={ this.onPersonSelected }
-            getData = {this.props.getData.getAllPlanets}
-            renderItem = {(item) =>
-              (<span>{item.name} {item.diametr} km</span>)}
-          />
-        </div>
-        <div className="col-md-6">
-          <PlanetDetails personId = {this.state.selectedPlanet}
-            getData = {this.props.getData.getPlanet}
-          />
-        </div>
-      </div>
+    const itemDetails = (
+      <ItemDetails
+        getData = {this.props.getData.getPlanet}
+        itemId = {this.state.selectedItem}
+        getImgUrl ={1}>
+        <Record field="name" label ="Имя"/>
+        <Record field="diametr" label ="Диаметр"/>
+        <Record field="population" label="Население"/>
+      </ItemDetails>
+    );
+    const planetList = (
+      <ItemList
+        onItemSelected={ this.onPlanetSelected }
+        getData = {this.props.getData.getAllPlanets}
+        renderItem = { (item) => `${item.name}` }
+      />
     )
+  
+    return(
+      <Row
+        left={ planetList }
+        right={ itemDetails }
+      />
+    )
+    
   }
 }
