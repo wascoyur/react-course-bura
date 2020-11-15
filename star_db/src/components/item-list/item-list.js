@@ -46,3 +46,6 @@ export default class ItemList extends Component {
 
   }
 }
+// ItemList.defaultProps={
+//   onItemSelected:()=> {return 5}
+// }

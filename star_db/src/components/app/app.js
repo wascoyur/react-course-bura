@@ -6,26 +6,34 @@ import PlanetPage from '../planet-page/'
 import PeoplePage from '../people-page/'
 import Row from '../row/'
 import './app.css';
+import {BrowserRouter as Router,Route} from "react-router-dom";
 
 export default class App extends Component{
-  swapi = new SwapiService();
-
+  state={
+    swapi:new SwapiService()
+  }
   render(){
+    
     return (
-    <div>
-      <Header />
-      {/*<div className="row mb2">*/}
-      {/*  <div className="col-md-6">*/}
-      {/*    <RandomPlanet />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-      <PeoplePage
-        getData = {this.swapi}
-      />
-      <PlanetPage
-        getData = {this.swapi}
-      />
-    </div>
-  );
+        <div>
+          <Router>
+            <Header />
+            <div className="row mb2">
+              <div className="col-md-6">
+                <RandomPlanet />
+              </div>
+            </div>
+            <Route
+              path="/people"
+              children = { <PeoplePage  getData = {this.state.swapi}/>}/>
+            <Route
+              path="/planet"
+              children= { <PlanetPage getData = { this.state.swapi }/>}/>
+            
+          </Router>
+        </div>
+      
+    
+    )
   }
 };

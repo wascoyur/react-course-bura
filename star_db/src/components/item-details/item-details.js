@@ -49,10 +49,6 @@ export default class ItemDetails extends Component{
   }
   render(){
     const { loading, item } = this.state;
-    // const spinner = loading  ? <Spinner/>:null
-    // const content = !loading ? <PersonView person = {item}/> : null
-    const tmp = this.props.children;
-    // console.log(tmp);
     return(
       <div className="person-details card">
         <img className="person-image" src={item.img} alt=""></img>
@@ -66,8 +62,7 @@ export default class ItemDetails extends Component{
             }
           </ul>
         </div>
-        {/*{content}*/}
-        {/*{spinner}*/}
+
       </div>
     )
   }
