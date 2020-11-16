@@ -6,7 +6,7 @@ import Row from "../row";
 
 export default class PlanetPage extends Component{
   state = {
-    selectedItem:5
+    selectedItem:0
   }
   onPlanetSelected = (selectedItem)=>{
     this.setState({selectedItem});
