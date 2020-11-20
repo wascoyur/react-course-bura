@@ -3,15 +3,18 @@ import './error-boudary.css'
 import ErrorIndicator from "../error-indicator";
 
 export default class ErrorBoundary extends Component{
+  state={
+    hasError:false
+  }
   componentDidCatch(){
-  
+    this.setState({
+      hasError:true
+    })
   }
   render(){
-    return(
-        <div>
-          <ErrorIndicator/>
-        </div>
-      )
-    
+    if (this.state.hasError) {
+      return <ErrorIndicator/>
+    }
+    return this.props.children
   }
 }
