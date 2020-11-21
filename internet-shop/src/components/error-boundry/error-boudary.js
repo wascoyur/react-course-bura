@@ -15,6 +15,12 @@ export default class ErrorBoundary extends Component{
     if (this.state.hasError) {
       return <ErrorIndicator/>
     }
-    return this.props.children
+    let out;
+    try{
+       out = this.props.children
+    }catch (e) {
+      console.log(`this.props.children: ${this.props.children}, e: ${e}`)
+    }
+    return out
   }
 }
