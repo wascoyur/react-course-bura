@@ -8,7 +8,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'BOOKS_LOADED':
       return {
-        books: action.payload
+         books: action.payload
       };
 
     default:
