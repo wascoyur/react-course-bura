@@ -1,14 +1,8 @@
-import React, {Component} from 'react';
-import './error-indicator.css'
+import React from 'react';
+import './error-indicator.css';
 
-export default class ErrorIndicator extends Component{
-  render() {
-    return(
-      <div className="container-sm error-indicator">
-        <span className={"alert alert-danger"}>Error is red</span>
-      </div>
-      
-      )
-    
-  }
-}
+const ErrorIndicator = () => {
+  return <div>Error!</div>;
+};
+
+export default ErrorIndicator;
