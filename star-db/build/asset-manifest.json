@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-course-bura/star-db/build/static/css/main.2d15fc16.chunk.css",
-    "main.js": "/react-course-bura/star-db/build/static/js/main.fcc9e74a.chunk.js",
-    "main.js.map": "/react-course-bura/star-db/build/static/js/main.fcc9e74a.chunk.js.map",
+    "main.js": "/react-course-bura/star-db/build/static/js/main.dfcc88be.chunk.js",
+    "main.js.map": "/react-course-bura/star-db/build/static/js/main.dfcc88be.chunk.js.map",
     "runtime-main.js": "/react-course-bura/star-db/build/static/js/runtime-main.689d3dee.js",
     "runtime-main.js.map": "/react-course-bura/star-db/build/static/js/runtime-main.689d3dee.js.map",
     "static/js/2.fcd869b4.chunk.js": "/react-course-bura/star-db/build/static/js/2.fcd869b4.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.689d3dee.js",
     "static/js/2.fcd869b4.chunk.js",
     "static/css/main.2d15fc16.chunk.css",
-    "static/js/main.fcc9e74a.chunk.js"
+    "static/js/main.dfcc88be.chunk.js"
   ]
 }
