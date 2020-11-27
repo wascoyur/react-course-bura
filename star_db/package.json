@@ -40,9 +40,13 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "babel-loader": "^8.2.2",
+    "beautify-json": "^1.0.1",
+    "compression-webpack-plugin": "^6.1.1",
+    "copy-webpack-plugin": "^6.3.2",
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.8.0",
+    "webpack-bundle-analyzer": "^4.1.0",
     "webpack-cli": "^4.2.0"
   }
 }
